@@ -22,7 +22,6 @@ public class Shop {
     private final String SERIALIZED_PATH = "src/com/company/SerializedObjects/Products.ser";
     private final Scanner sc = new Scanner(System.in);
     private Orders order;
-    private Product product;
     private List<User> users;
     private Catalog productList;
     private User loggedInUser;
@@ -123,8 +122,11 @@ public class Shop {
                 case 3:
                     printProducts();
                     break;
-
                 case 4:
+                    printListOfProductsByPrice();
+                    break;
+
+                case 5:
                     exportOrderInvoice();
                     stockSerialization();
                     System.out.println("Checkout");
@@ -166,7 +168,7 @@ public class Shop {
     }
 
 
-    private void menuClientAddProductToCart() throws IOException {
+    private void menuClientAddProductToCart() {
         System.out.println("Choose product id");
         int id = sc.nextInt();
 
@@ -312,7 +314,7 @@ public class Shop {
 
     public void printListOfProductsByPrice() {
         List<Product> productList = listOfProductsByPrice();
-        for (Product product : productList){
+        for (Product product : productList) {
             System.out.println("id- "
                     + product.getId() + " ; "
                     + "name- "
