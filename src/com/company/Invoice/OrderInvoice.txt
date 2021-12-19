@@ -2,7 +2,13 @@ You purchased the following products:
 
 
 Name - rui
-Quantity - 15
-Price - 375.0
+Quantity - 2
+Price - 50.0
 
 
+100.0Name - ricardo
+Quantity - 2
+Price - 50.0
+
+
+100.0

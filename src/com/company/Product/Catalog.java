@@ -5,12 +5,12 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductList implements Serializable {
+public class Catalog implements Serializable {
 
 
     HashMap<Integer, Product> listProducts;
 
-    public ProductList() {
+    public Catalog() {
         this.listProducts = new HashMap<>();
     }
 
