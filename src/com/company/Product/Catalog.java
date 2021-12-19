@@ -27,10 +27,8 @@ public class Catalog implements Serializable {
 
     }
 
-
     public HashMap<Integer, Product> getListProducts() {
         return listProducts;
     }
-
 
 }

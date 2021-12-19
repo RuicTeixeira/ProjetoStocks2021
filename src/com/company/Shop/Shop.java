@@ -26,7 +26,6 @@ public class Shop {
     private Catalog productList;
     private User loggedInUser;
 
-
     public Shop() {
 
         this.order = new Orders();
@@ -34,8 +33,7 @@ public class Shop {
         this.users = new ArrayList<>();
     }
 
-
-    public void printProducts() {
+    private void printProducts() {
         for (Map.Entry<Integer, Product> product : productList.getListProducts().entrySet()) {
             System.out.println("id- "
                     + product.getValue().getId() + " ; "
@@ -50,29 +48,34 @@ public class Shop {
         System.out.println();
     }
 
-
-    public void addProductToCatalog(int id, String name, int price) {
+    private void addProductToCatalog(int id, String name, int price) {
         System.out.println("Product " + name + " add to catalogue");
         productList.addProducts(id, name, price);
     }
 
-    public void removeProductFromCatalog(int id) {
+    private void removeProductFromCatalog(int id) {
         System.out.println("Product with id " + id + " as been removed");
         productList.getListProducts().remove(id);
     }
 
-    public void removeProductFromCart(int id) {
-        System.out.println("Product with id " + id + " as been removed");
-        order.getOrderedProducts().remove(id);
+    private void removeProductFromCart(int id) {
+        System.out.println("Product with id " + id + " as been removed\n");
+        for (Map.Entry<Integer, Product> productEntryOrder : order.getOrderedProducts().entrySet()) {
+            for (Map.Entry<Integer, Product> productEntryCatalog : productList.getListProducts().entrySet()) {
+                if (productEntryOrder.getKey() == id) {
+                    productEntryCatalog.getValue().setQuantity(productEntryCatalog.getValue().getQuantity()
+                            + productEntryOrder.getValue().getQuantity());
+                    order.getOrderedProducts().remove(id);
+                }
+            }
+        }
     }
 
-
-    public boolean checkProductId(int id) {
+    private boolean checkProductId(int id) {
         return productList.getListProducts().containsKey(id);
     }
 
-
-    public void employerMenu() throws IOException {
+    private void employerMenu() throws IOException {
 
         boolean exitProgram = true;
         while (exitProgram) {
@@ -80,21 +83,26 @@ public class Shop {
             switch (sc.nextInt()) {
                 case 1:
                     printProducts();
+                    ConsoleUi.dividers();
                     break;
                 case 2:
                     menuEmployerAddProductToCatalog();
+                    ConsoleUi.dividers();
                     break;
 
                 case 3:
                     menuEmployerRemoveProductFromCatalog();
+                    ConsoleUi.dividers();
                     break;
 
                 case 4:
                     menuEmployerAddQuantityToProduct();
+                    ConsoleUi.dividers();
                     break;
 
                 case 5:
                     printListOfProductsByPrice();
+                    ConsoleUi.dividers();
                     break;
                 case 6:
                     System.out.println("Checkout");
@@ -105,7 +113,7 @@ public class Shop {
 
     }
 
-    public void clientMenu() throws IOException {
+    private void clientMenu() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean exitProgram = true;
         while (exitProgram) {
@@ -113,17 +121,21 @@ public class Shop {
             switch (sc.nextInt()) {
                 case 1:
                     menuClientAddProductToCart();
+                    ConsoleUi.dividers();
                     break;
 
                 case 2:
                     menuClientRemoveProductFromCart();
+                    ConsoleUi.dividers();
                     break;
 
                 case 3:
                     printProducts();
+                    ConsoleUi.dividers();
                     break;
                 case 4:
                     printListOfProductsByPrice();
+                    ConsoleUi.dividers();
                     break;
 
                 case 5:
@@ -136,7 +148,7 @@ public class Shop {
         }
     }
 
-    public void addProductsToCart(int id, int quantity) {
+    private void addProductsToCart(int id, int quantity) {
         for (Map.Entry<Integer, Product> productEntry : productList.getListProducts().entrySet()) {
             if (id == productEntry.getValue().getId()) {
                 if (productEntry.getValue().getQuantity() >= quantity) {
@@ -148,7 +160,7 @@ public class Shop {
         }
     }
 
-    public void stockSerialization() throws IOException {
+    private void stockSerialization() throws IOException {
 
         FileOutputStream fileOutputStream = new FileOutputStream(SERIALIZED_PATH);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -166,7 +178,6 @@ public class Shop {
 
 
     }
-
 
     private void menuClientAddProductToCart() {
         System.out.println("Choose product id");
@@ -186,8 +197,8 @@ public class Shop {
     }
 
     private void menuClientRemoveProductFromCart() {
+        System.out.println("Remove a product from your cart by id");
         int idRemover = sc.nextInt();
-        System.out.println("Remove a product from your cart");
         removeProductFromCart(idRemover);
         order.printOrderedProducts();
     }
@@ -227,10 +238,9 @@ public class Shop {
         stockSerialization();
     }
 
-    public void exportOrderInvoice() throws IOException {
+    private void exportOrderInvoice() throws IOException {
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/com/company/Invoice/OrderInvoice.txt"));
-
 
         writer.write("You purchased the following products: \n\n\n");
         for (Map.Entry<Integer, Product> productEntry : order.getOrderedProducts().entrySet()) {
@@ -239,21 +249,17 @@ public class Shop {
             int quantity = productEntry.getValue().getQuantity();
             writer.write("Name - " + name + "\nQuantity - " + quantity + "\nPrice - " + price + "\n\n\n" + "Total cost of your purchase: " + orderTotalCost());
         }
-
-
         writer.flush();
         writer.close();
 
     }
 
-
-    public boolean logInConfirmation() {
-        boolean correctLogin = false;
+    private boolean logInConfirmation() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter your username ");
         String username = sc.next();
-
+        System.out.println("--------------------");
         System.out.println("Enter your password");
         String password = sc.next();
         addUsersDemo();
@@ -268,13 +274,13 @@ public class Shop {
         return false;
     }
 
-    public void addUsersDemo() {
+    private void addUsersDemo() {
         this.users.add(new Client("Julio", "julio1", "marega1"));
         this.users.add(new Employee("Mario", "Mario1", "marega1"));
     }
 
-
     public void login() throws IOException {
+
 
         do {
             if (logInConfirmation()) {
@@ -292,7 +298,7 @@ public class Shop {
 
     }
 
-    public double orderTotalCost() {
+    private double orderTotalCost() {
         double finalCost = 0.0;
         for (Map.Entry<Integer, Product> productEntry : order.getOrderedProducts().entrySet()) {
             finalCost += productEntry.getValue().getPrice();
@@ -300,7 +306,7 @@ public class Shop {
         return finalCost;
     }
 
-    public List<Product> listOfProductsByPrice() {
+    private List<Product> listOfProductsByPrice() {
         System.out.println("Enter the lower price");
         double lowerPrice = sc.nextDouble();
         System.out.println("Enter the higher price");
@@ -312,7 +318,7 @@ public class Shop {
                 .collect(Collectors.toList());
     }
 
-    public void printListOfProductsByPrice() {
+    private void printListOfProductsByPrice() {
         List<Product> productList = listOfProductsByPrice();
         for (Product product : productList) {
             System.out.println("id- "
@@ -323,6 +329,5 @@ public class Shop {
                     + product.getPrice());
         }
     }
-
 
 }
