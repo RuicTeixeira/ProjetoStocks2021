@@ -5,17 +5,17 @@ public class ConsoleUi {
 
     public static void employerMenu(){
 
-        System.out.println("Press 1 - List all Products in catalog");
+        System.out.println("Press 1 - List all products in catalog");
         System.out.println("-----------------------------");
         System.out.println("Press 2 - Add product to catalog");
         System.out.println("-----------------------------");
-        System.out.println("Press 3 - Remove product by id");
+        System.out.println("Press 3 - Remove product from catalog by id");
         System.out.println("-----------------------------");
         System.out.println("Press 4 - Add quantity to a product in catalog");
         System.out.println("-----------------------------");
-        System.out.println("Press 5 - Search Products by price");
+        System.out.println("Press 5 - Search products in a price range");
         System.out.println("-----------------------------");
-        System.out.println("Press 6 - Finish Session");
+        System.out.println("Press 6 - Finish session");
         System.out.println("\nOption: ");
 
     }
@@ -26,11 +26,11 @@ public class ConsoleUi {
         System.out.println("-----------------------------");
         System.out.println("Press 2 - Remove product from your cart");
         System.out.println("-----------------------------");
-        System.out.println("Press 3 - List all Products");
+        System.out.println("Press 3 - List all products in catalog");
         System.out.println("-----------------------------");
-        System.out.println("Press 4 - Search products by price");
+        System.out.println("Press 4 - Search products in a price range");
         System.out.println("-------------------------------");
-        System.out.println("Press 5 - Finish Session");
+        System.out.println("Press 5 - Finish session");
         System.out.println("\nOption: ");
 
     }
