@@ -1,0 +1,8 @@
+You purchased the following products: 
+
+
+Name - rui
+Quantity - 15
+Price - 375.0
+
+

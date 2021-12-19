@@ -28,12 +28,6 @@ public class ProductList implements Serializable {
     }
 
 
-    public void printClientMenuProducts() {
-        for (Map.Entry<Integer, Product> product : listProducts.entrySet()) {
-            System.out.println("name- " + product.getValue().getName() + " ; " + "price- " + product.getValue().getPrice() + " ; " + "quantity- " + product.getValue().getQuantity());
-        }
-    }
-
     public HashMap<Integer, Product> getListProducts() {
         return listProducts;
     }

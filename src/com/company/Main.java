@@ -11,16 +11,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 	// write your code here
-
-        Client client = new Client("Julio","julio1","julio2");
-        Employee employee = new Employee("Mario","Mario1","mario2");
-
         Shop shop = new Shop();
         shop.loadStockSerialization();
-        shop.employerMenu();
-        shop.clientMenu();
-        shop.printProducts();
-
-
+        shop.login();
     }
 }
