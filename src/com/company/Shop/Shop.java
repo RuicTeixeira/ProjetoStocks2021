@@ -214,6 +214,9 @@ public class Shop {
     }
 
     private void menuClientRemoveProductFromCart() {
+        System.out.println("Items on your cart: ");
+        order.printOrderedProducts();
+        System.out.println("\n");
         System.out.println("Remove a product from your cart by id");
         int idRemover = sc.nextInt();
         removeProductFromCart(idRemover);
