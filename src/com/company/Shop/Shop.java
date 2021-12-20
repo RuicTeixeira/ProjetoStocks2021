@@ -63,8 +63,10 @@ public class Shop {
         for (Map.Entry<Integer, Product> productEntryOrder : order.getOrderedProducts().entrySet()) {
             for (Map.Entry<Integer, Product> productEntryCatalog : productList.getListProducts().entrySet()) {
                 if (productEntryOrder.getKey() == id) {
-                    productEntryCatalog.getValue().setQuantity(productEntryCatalog.getValue().getQuantity()
-                            + productEntryOrder.getValue().getQuantity());
+                    if(productEntryCatalog.getKey() == id) {
+                        productEntryCatalog.getValue().setQuantity(productEntryCatalog.getValue().getQuantity()
+                                + productEntryOrder.getValue().getQuantity());
+                    }
                     order.getOrderedProducts().remove(id);
                 }
             }
