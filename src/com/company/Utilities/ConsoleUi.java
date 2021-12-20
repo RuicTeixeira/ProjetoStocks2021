@@ -37,7 +37,9 @@ public class ConsoleUi {
         System.out.println("-----------------------------");
         System.out.println("Press 4 - Search products in a price range");
         System.out.println("-------------------------------");
-        System.out.println("Press 5 - Finish session");
+        System.out.println("Press 5 - List all products in your cart");
+        System.out.println("-------------------------------");
+        System.out.println("Press 6 - Finish session");
         System.out.println(ANSI_RED + "\nOption: " + ANSI_RESET);
 
     }

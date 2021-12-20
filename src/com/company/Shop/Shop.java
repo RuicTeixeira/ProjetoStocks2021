@@ -63,7 +63,7 @@ public class Shop {
         for (Map.Entry<Integer, Product> productEntryOrder : order.getOrderedProducts().entrySet()) {
             for (Map.Entry<Integer, Product> productEntryCatalog : productList.getListProducts().entrySet()) {
                 if (productEntryOrder.getKey() == id) {
-                    if(productEntryCatalog.getKey() == id) {
+                    if (productEntryCatalog.getKey() == id) {
                         productEntryCatalog.getValue().setQuantity(productEntryCatalog.getValue().getQuantity()
                                 + productEntryOrder.getValue().getQuantity());
                     }
@@ -154,8 +154,15 @@ public class Shop {
                     ConsoleUi.dividers();
                     sc.nextLine();
                     break;
-
                 case 5:
+                    System.out.println("Items on your cart: ");
+                    order.printOrderedProducts();
+                    System.out.println("\n");
+                    ConsoleUi.dividers();
+                    sc.nextLine();
+                    break;
+
+                case 6:
                     exportOrderInvoice();
                     stockSerialization();
                     System.out.println("\nCheckout\n");
@@ -268,7 +275,7 @@ public class Shop {
             int quantity = productEntry.getValue().getQuantity();
             writer.write("Name - " + name + "\nQuantity - " + quantity + "\nPrice - " + price + "\n\n\n");
         }
-        writer.write( "Total cost of your purchase: " + orderTotalCost());
+        writer.write("Total cost of your purchase: " + orderTotalCost());
         writer.flush();
         writer.close();
 
