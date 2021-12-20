@@ -275,12 +275,12 @@ public class Shop {
     }
 
     private void addUsersDemo() {
-        this.users.add(new Client("Julio", "julio1", "marega1"));
-        this.users.add(new Employee("Mario", "Mario1", "marega1"));
+        this.users.add(new Client("Julio", "client", "client1"));
+        this.users.add(new Employee("Mario", "employee", "employee1"));
+
     }
 
     public void login() throws IOException {
-
 
         do {
             if (logInConfirmation()) {
