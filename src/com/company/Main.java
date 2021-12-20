@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.Shop.Shop;
+import com.company.Utilities.ConsoleUi;
 
 import java.io.IOException;
 

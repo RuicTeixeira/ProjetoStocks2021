@@ -1,10 +1,5 @@
 package com.company.Users;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Objects;
-import java.util.Scanner;
 
 public class Client extends User {
 

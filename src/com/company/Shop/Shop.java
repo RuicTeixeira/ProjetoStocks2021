@@ -76,36 +76,44 @@ public class Shop {
     }
 
     private void employerMenu() throws IOException {
-
+        Scanner sc = new Scanner(System.in);
+        System.out.println(ConsoleUi.ANSI_BLUE + "\nWelcome " + loggedInUser.getName() + " choose an option\n");
         boolean exitProgram = true;
         while (exitProgram) {
+            System.out.println(ConsoleUi.ANSI_BLUE + "Press enter to show employer menu" + ConsoleUi.ANSI_RESET);
+            sc.nextLine();
             ConsoleUi.employerMenu();
             switch (sc.nextInt()) {
                 case 1:
                     printProducts();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
                 case 2:
                     menuEmployerAddProductToCatalog();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
 
                 case 3:
                     menuEmployerRemoveProductFromCatalog();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
 
                 case 4:
                     menuEmployerAddQuantityToProduct();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
 
                 case 5:
                     printListOfProductsByPrice();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
                 case 6:
-                    System.out.println("Checkout");
+                    System.out.println("\nCheckout\n");
                     exitProgram = false;
                     break;
             }
@@ -115,33 +123,40 @@ public class Shop {
 
     private void clientMenu() throws IOException {
         Scanner sc = new Scanner(System.in);
+        System.out.println(ConsoleUi.ANSI_RED + "\nWelcome " + loggedInUser.getName() + " choose an option\n");
         boolean exitProgram = true;
         while (exitProgram) {
+            System.out.println(ConsoleUi.ANSI_RED + "Press enter to show client menu" + ConsoleUi.ANSI_RESET);
+            sc.nextLine();
             ConsoleUi.clientMenu();
             switch (sc.nextInt()) {
                 case 1:
                     menuClientAddProductToCart();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
 
                 case 2:
                     menuClientRemoveProductFromCart();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
 
                 case 3:
                     printProducts();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
                 case 4:
                     printListOfProductsByPrice();
                     ConsoleUi.dividers();
+                    sc.nextLine();
                     break;
 
                 case 5:
                     exportOrderInvoice();
                     stockSerialization();
-                    System.out.println("Checkout");
+                    System.out.println("\nCheckout\n");
                     exitProgram = false;
                     break;
             }
@@ -206,12 +221,11 @@ public class Shop {
     private void menuEmployerAddProductToCatalog() throws IOException {
         System.out.println("Choose product id");
         int id = sc.nextInt();
-        System.out.println("Choose the name of your product");
-        String name = sc.next();
-        System.out.println("Set the price for your product");
-        int price = sc.nextInt();
-
         if (!checkProductId(id)) {
+            System.out.println("Choose the name of your product");
+            String name = sc.next();
+            System.out.println("Set the price for your product");
+            int price = sc.nextInt();
             addProductToCatalog(id, name, price);
         } else {
             System.out.println("This id is already used choose another");
@@ -247,25 +261,23 @@ public class Shop {
             String name = productEntry.getValue().getName();
             double price = productEntry.getValue().getPrice();
             int quantity = productEntry.getValue().getQuantity();
-            writer.write("Name - " + name + "\nQuantity - " + quantity + "\nPrice - " + price + "\n\n\n" + "Total cost of your purchase: " + orderTotalCost());
+            writer.write("Name - " + name + "\nQuantity - " + quantity + "\nPrice - " + price + "\n\n\n");
         }
+        writer.write( "Total cost of your purchase: " + orderTotalCost());
         writer.flush();
         writer.close();
 
     }
 
     private boolean logInConfirmation() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter your username ");
+        System.out.println(ConsoleUi.ANSI_PURPLE + "\nEnter your username ");
         String username = sc.next();
         System.out.println("--------------------");
-        System.out.println("Enter your password");
+        System.out.println("Enter your password" + ConsoleUi.ANSI_RESET);
         String password = sc.next();
         addUsersDemo();
         for (User user : users) {
             if (username.equals(user.getUsername()) & password.equals(user.getPassword())) {
-                System.out.println("\nWelcome " + user.getName() + " choose an option\n");
                 loggedInUser = user;
                 return true;
 
@@ -281,7 +293,7 @@ public class Shop {
     }
 
     public void login() throws IOException {
-
+        ConsoleUi.banner();
         do {
             if (logInConfirmation()) {
                 if (loggedInUser instanceof Client) {
