@@ -67,10 +67,10 @@ public class Shop {
                         productEntryCatalog.getValue().setQuantity(productEntryCatalog.getValue().getQuantity()
                                 + productEntryOrder.getValue().getQuantity());
                     }
-                    order.getOrderedProducts().remove(id);
                 }
             }
         }
+        order.getOrderedProducts().remove(id);
     }
 
     private boolean checkProductId(int id) {
@@ -167,6 +167,7 @@ public class Shop {
                     stockSerialization();
                     System.out.println("\nCheckout\n");
                     exitProgram = false;
+                    order.getOrderedProducts().clear();
                     break;
             }
         }

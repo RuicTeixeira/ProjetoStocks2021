@@ -2,13 +2,18 @@ You purchased the following products:
 
 
 Name - cuecas
-Quantity - 2
-Price - 20.0
+Quantity - 5
+Price - 50.0
 
 
 Name - calcas
-Quantity - 6
-Price - 144.0
+Quantity - 1
+Price - 24.0
 
 
-Total cost of your purchase: 164.0
+Name - meias
+Quantity - 5
+Price - 100.0
+
+
+Total cost of your purchase: 174.0
